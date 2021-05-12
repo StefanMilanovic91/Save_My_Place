@@ -1,7 +1,131 @@
+/* CSS Reset
+ * *********************************** */
 *{
     padding: 0;
     margin: 0;
+    border: 0;
 }
-img{
-    width: 60px;
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    line-height: 1.4;
+}
+
+a,
+a:visited {
+    color: inherit;
+}
+
+article,
+aside,
+footer,
+header,
+nav,
+section,
+main {
+    display: block;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+/* Element specific
+ * *********************************** */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+img,
+video {
+    max-width: 100%;
+}
+
+img {
+    border-style: none;
+}
+
+/*************************** CSS RULES ************************************ */
+
+.main-page{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.map-container{
+    height: 70vh;
+    width: 80vw;
+    margin: 0 auto;
+}
+
+.current-location{
+    width: 4.8rem;
+}
+.saved-location{
+    width: 4.8rem;
+    height: 4.8rem;
+    background-color: blueviolet;
+}
+
+.modal{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, .8);
+    z-index: 100;
+}
+
+.modal h1{
+    color: #fff;
+    font-size: 36px;
+}
+.mapboxgl-popup{
+    top: -8px;
+}
+.mapboxgl-popup-content{
+    padding: 5px 10px 5px;
+}
+
+/* navigation */
+
+.nav{
+    display: flex;
+}
+
+.btn{
+    background-color: darkgoldenrod;
+    border: 1px solid orange;
+    padding: 1rem 2rem;
+    transform: skewX(-12deg);
+    border-radius: 13px 3px 13px 3px;
+    box-shadow: inset 0 0 18px darkorange, 1px 1px 5px darkorange;
+    color: #fff;
+    font-weight: bold;
+    transition: box-shadow .3s;
+}
+
+.btn:hover{
+    box-shadow: inset 0 0 33px darkorange;
 }

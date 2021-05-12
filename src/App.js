@@ -1,14 +1,21 @@
-import React, { Fragment } from 'react'
+import React, { useState } from 'react'
 
 import Map from './components/Map/Map';
+import Modal from './components/Modal/Modal';
+import Navbar from './components/Navbar/Navbar';
 
 const App = () => {
-    return (
-        <Fragment>
 
-            <Map />
-            
-        </Fragment>
+    const [modalMessage, setModalMessage] = useState(null);
+
+
+    return (
+        <main className="main-page">
+            <Navbar />
+            <Map setModalMessage={setModalMessage} />
+            <Modal modalMessage={modalMessage} />
+
+        </main>
     )
 }
 
