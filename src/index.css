@@ -62,17 +62,16 @@ img {
 }
 
 /*************************** CSS RULES ************************************ */
-
+.map{
+    width: 70%;
+    height: 70vh;
+    margin: 50px auto;
+}
 .main-page{
     position: relative;
     width: 100%;
     height: 100vh;
-}
-
-.map-container{
-    height: 70vh;
-    width: 80vw;
-    margin: 0 auto;
+    background-image: linear-gradient(180deg,#2f6ed3 5%,#5095e4 20%,#5095e4 60%,#2f6ed3 95%);
 }
 
 .current-location{
@@ -115,17 +114,30 @@ img {
 }
 
 .btn{
-    background-color: darkgoldenrod;
-    border: 1px solid orange;
+    background: rgba( 255, 255, 255, 0.15 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 5.5px );
+    -webkit-backdrop-filter: blur( 5.5px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
     padding: 1rem 2rem;
     transform: skewX(-12deg);
-    border-radius: 13px 3px 13px 3px;
-    box-shadow: inset 0 0 18px darkorange, 1px 1px 5px darkorange;
+    border-radius: 13px 5px 13px 5px;
     color: #fff;
     font-weight: bold;
     transition: box-shadow .3s;
+    cursor: pointer;
 }
 
 .btn:hover{
-    box-shadow: inset 0 0 33px darkorange;
+    box-shadow : 0 8px 32px 0 rgba( 35, 48, 235, 0.47 );
+}
+
+.my-locations{
+    background: rgba( 255, 255, 255, 0.30 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 4px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
