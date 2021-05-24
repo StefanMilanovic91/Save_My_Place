@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react'
 
+
 import Map from './components/Map/Map';
 import Modal from './components/Modal/Modal';
 import Navbar from './components/Navbar/Navbar';
+import Layout from './components/Layout/Layout';
+import Dashboard from './components/Dashboard/Dashboard';
 
 const App = () => {
+
 
     const [modalMessage, setModalMessage] = useState(null);
     const [markers, setMarkers] = useState([]);
     const [currentLocation, setCurrentLocation] = useState([0, 0]);
-    const [centerView, setCenterView] = useState();
-    const [directionCoordinates, setDirectionCoordinates] = useState([]);
+    const [centerView, setCenterView] = useState([0, 0]);
+    const [geojson, setGeojson] = useState([]);
 
-    
+
     useEffect(() => {
 
         // get my locations from local storage
@@ -27,7 +31,7 @@ const App = () => {
                 setCenterView([longitude, latitude]);
             }, (err) => {
                 setModalMessage(err.message);
-                
+
             });
         } else {
             setModalMessage("Geolocation is not supported by this browser.");
@@ -44,11 +48,11 @@ const App = () => {
     const saveCurrLocationToLS = (arg) => {
         let oldpLoc = JSON.parse(localStorage.getItem('locations'));
         if (oldpLoc) {
-            let newLoc = JSON.stringify([...oldpLoc, arg]);       
+            let newLoc = JSON.stringify([...oldpLoc, arg]);
             localStorage.setItem('locations', newLoc);
         }
-        
-        
+
+
     }
 
     const getLocationsFromLS = () => {
@@ -63,30 +67,42 @@ const App = () => {
 
     const showDirectionsHendler = async (e) => {
         e.preventDefault();
-        
+
         let fetchCoordinates = markers.map(location => location.coordinates)
-        
+
         let data = await fetchDirections(fetchCoordinates[0][0], fetchCoordinates[0][1], fetchCoordinates[1][0], fetchCoordinates[1][1]);
-        setDirectionCoordinates(data.routes[0].geometry.coordinates);
+        const geojson = {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+                type: 'LineString',
+                coordinates: data.routes[0].geometry.coordinates
+            }
+        }
+        setGeojson(geojson);
         console.log(data);
-    } 
+    }
 
     return (
         <main className="main-page">
-            <Navbar saveCurrentLocation={saveCurrentLocationHendler} showDirectionsHendler={showDirectionsHendler} />
-            
-            <div className="my-locations">
-                <h4>My saved location</h4>
-                {
-                    markers.map((location, index) => <p key={index} >{location.title}</p>)
-                }
-            </div>
-            <Map
-                markers={markers}
-                currentLocation={currentLocation}
-                directionCoordinates={directionCoordinates}
-                centerView={centerView}
-            />
+            <Navbar showDirectionsHendler={showDirectionsHendler} />
+
+            <Layout>
+
+                <Dashboard
+                    markers={markers}
+                    saveCurrentLocationHendler={saveCurrentLocationHendler}
+                />
+                
+                <Map
+                    markers={markers}
+                    currentLocation={currentLocation}
+                    geojson={geojson}
+                    centerView={centerView}
+                />
+            </Layout>
+
+
             <Modal modalMessage={modalMessage} />
 
         </main>

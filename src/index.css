@@ -62,6 +62,23 @@ img {
 }
 
 /*************************** CSS RULES ************************************ */
+
+.Main{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 100px;
+    align-items: flex-start;
+}
+
+.Dashboard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    height: 50vh;
+}
+
 .map{
     width: 70%;
     height: 70vh;
@@ -128,16 +145,52 @@ img {
     transition: box-shadow .3s;
     cursor: pointer;
 }
-
+.btn-dash-input{
+    background-color: #2f6ed3;
+}
 .btn:hover{
     box-shadow : 0 8px 32px 0 rgba( 35, 48, 235, 0.47 );
 }
-
-.my-locations{
+.Dashboard-card{
     background: rgba( 255, 255, 255, 0.30 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 4px );
     -webkit-backdrop-filter: blur( 4px );
     border-radius: 4px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
+    padding: 30px 50px;
+    width: 100%;
+    margin-bottom: 50px;
+}
+.Dashboard-input{
+    display: flex;
+    flex-direction: column;
+}
+.Dashboard-locations{
+    color: white;
+}
+.Dashboard-locations-title{
+    text-decoration: underline;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.Dashboard-location-item{
+    cursor: pointer;
+    transition: color .2s;
+}
+.Dashboard-location-item:hover{
+    color: darkslategray;
+}
+
+.mapboxgl-popup {
+    top: 0;
+    left: 0;
+}
+.mapboxgl-popup-content {
+    padding: 1px 5px 1px;
+}
+.mapbox-react{
+    width: 75%;
+    height: 50vh;
+    margin-left: auto;
 }
