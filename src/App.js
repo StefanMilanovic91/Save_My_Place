@@ -15,6 +15,7 @@ const App = () => {
     const [currentLocation, setCurrentLocation] = useState([0, 0]);
     const [centerView, setCenterView] = useState([0, 0]);
     const [geojson, setGeojson] = useState([]);
+    const [pickedLocation, setPickedLocation] = useState(null);
 
 
     useEffect(() => {
@@ -26,7 +27,7 @@ const App = () => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((pos) => {
                 const { longitude, latitude } = pos.coords;
-                console.log(longitude, latitude);
+
                 setCurrentLocation([longitude, latitude]);
                 setCenterView([longitude, latitude]);
             }, (err) => {
@@ -92,6 +93,8 @@ const App = () => {
                 <Dashboard
                     markers={markers}
                     saveCurrentLocationHendler={saveCurrentLocationHendler}
+                    setCenterView={setCenterView}
+                    pickedLocation={pickedLocation}
                 />
                 
                 <Map
@@ -99,6 +102,7 @@ const App = () => {
                     currentLocation={currentLocation}
                     geojson={geojson}
                     centerView={centerView}
+                    setPickedLocation={setPickedLocation}
                 />
             </Layout>
 

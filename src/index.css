@@ -161,6 +161,10 @@ img {
     padding: 30px 50px;
     width: 100%;
     margin-bottom: 50px;
+    color: whitesmoke;
+}
+.Dashboard-input-group{
+    margin-bottom: 20px;
 }
 .Dashboard-input{
     display: flex;
@@ -172,14 +176,18 @@ img {
 .Dashboard-locations-title{
     text-decoration: underline;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    text-align: center;
 }
 .Dashboard-location-item{
     cursor: pointer;
-    transition: color .2s;
+    transition: color .1s;
 }
 .Dashboard-location-item:hover{
     color: darkslategray;
+}
+.Dashboard-lngLtd{
+    margin-bottom: 20px;
 }
 
 .mapboxgl-popup {
@@ -193,4 +201,13 @@ img {
     width: 75%;
     height: 50vh;
     margin-left: auto;
+}
+.marker{
+    position: relative;
+}
+.marker-img{
+    position: absolute;
+    top: -35px;
+    width: 35px;
+    height: 35px;
 }
