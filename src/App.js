@@ -11,8 +11,8 @@ const App = () => {
 
 
     const [modalMessage, setModalMessage] = useState(null);
-    const [markers, setMarkers] = useState([]);
-    const [currentLocation, setCurrentLocation] = useState([0, 0]);
+    const [markers, setMarkers] = useState(null);
+    const [currentLocation, setCurrentLocation] = useState(null);
     const [centerView, setCenterView] = useState([0, 0]);
     const [geojson, setGeojson] = useState([]);
     const [pickedLocation, setPickedLocation] = useState(null);
@@ -46,10 +46,13 @@ const App = () => {
     }
 
 
-    const saveCurrLocationToLS = (arg) => {
+    const saveToLocalStorage = (arg) => {
         let oldpLoc = JSON.parse(localStorage.getItem('locations'));
         if (oldpLoc) {
             let newLoc = JSON.stringify([...oldpLoc, arg]);
+            localStorage.setItem('locations', newLoc);
+        } else {
+            let newLoc = JSON.stringify([arg]);
             localStorage.setItem('locations', newLoc);
         }
 
@@ -60,10 +63,10 @@ const App = () => {
         return JSON.parse(localStorage.getItem('locations'));
     }
 
-    const saveCurrentLocationHendler = (e) => {
+    const saveLocationHendler = (e, title, coordinates) => {
         e.preventDefault();
-        //saveCurrLocationToLS({ title: "My log cabin", coordinates: currentLocation });
-        //setLocations([...locations, { title: "My log cabin", coordinates: currentLocation }]);
+        saveToLocalStorage({ title, coordinates: coordinates });
+        markers ? setMarkers([...markers, { title, coordinates: coordinates }]) : setMarkers([{ title, coordinates: coordinates }])
     }
 
     const showDirectionsHendler = async (e) => {
@@ -92,9 +95,10 @@ const App = () => {
 
                 <Dashboard
                     markers={markers}
-                    saveCurrentLocationHendler={saveCurrentLocationHendler}
+                    saveLocationHendler={saveLocationHendler}
                     setCenterView={setCenterView}
                     pickedLocation={pickedLocation}
+                    currentLocation={currentLocation}
                 />
                 
                 <Map
