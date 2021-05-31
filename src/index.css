@@ -132,17 +132,18 @@ img {
 .btn{
     background: rgba( 255, 255, 255, 0.15 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 5.5px );
+    backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur( 5.5px );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     padding: 1rem 2rem;
-    transform: skewX(-12deg);
-    border-radius: 13px 5px 13px 5px;
+    border-radius: 5px;
     color: #fff;
     font-weight: bold;
     transition: box-shadow .3s;
     cursor: pointer;
+    display: block;
+    width: 100%;
 }
 .btn-dash-input{
     background-color: #2f6ed3;
@@ -158,8 +159,8 @@ img {
 .Dashboard-card{
     background: rgba( 255, 255, 255, 0.30 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 4px );
-    -webkit-backdrop-filter: blur( 4px );
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     border-radius: 4px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     padding: 30px 50px;
@@ -197,6 +198,17 @@ img {
     margin-bottom: 20px;
 }
 
+.Dashboard-directions-start{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.Dashboard-directions-end{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
 .mapboxgl-popup {
     top: 0;
     left: 0;
@@ -223,7 +235,37 @@ img {
     padding: 0 5px;
     transform: translate(0, -33px);
     border-radius: 3px;
+    height: 24px;
+}
+.marker-title-place{
+    position: absolute;
+    white-space: nowrap;
+    top: 7px;
+    left: 18px;
+}
+.marker-title-place::after{
+    content: "";
+    width: 16px;
+    height: 16px;
+    background-color: burlywood;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 4px;
+    left: -6px;
+    z-index: -1;
 }
 .marker-title-current{
-    transform: translate(-46px, -78px);
+    transform: translate(-113px, -38px);
+}
+
+.marker-title-current:after{
+    content: "";
+    width: 16px;
+    height: 16px;
+    background-color: burlywood;
+    transform: rotate(45deg);
+    position: absolute;
+    top: 4px;
+    right: -6px;
+    z-index: -1;
 }

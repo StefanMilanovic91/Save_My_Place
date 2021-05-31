@@ -107,6 +107,7 @@ const App = () => {
                     geojson={geojson}
                     centerView={centerView}
                     setPickedLocation={setPickedLocation}
+                    setCenterView={setCenterView}
                 />
             </Layout>
 
