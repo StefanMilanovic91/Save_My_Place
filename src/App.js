@@ -14,7 +14,7 @@ const App = () => {
     const [markers, setMarkers] = useState(null);
     const [currentLocation, setCurrentLocation] = useState(null);
     const [centerView, setCenterView] = useState([0, 0]);
-    const [geojson, setGeojson] = useState([]);
+    const [geojson, setGeojson] = useState(null);
     const [pickedLocation, setPickedLocation] = useState(null);
 
 
@@ -41,7 +41,7 @@ const App = () => {
     }, []);
 
     const fetchDirections = (lng1, lat1, lng2, lat2) => {
-        let data = fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${lng1},${lat1};${lng2},${lat2}?&geometries=geojson&steps=true&access_token=pk.eyJ1Ijoic3RlZm1pbDkxIiwiYSI6ImNrb2tnaHJjcTAzdnoyb3BmeWF1MzJ6djMifQ.YebsJzhNccHaEOKMhigbIQ`).then(res => res).then(data => data.json());
+        let data = fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${lng1},${lat1};${lng2},${lat2}?&geometries=geojson&steps=true&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`).then(res => res).then(data => data.json());
         return data;
     }
 
@@ -69,12 +69,14 @@ const App = () => {
         markers ? setMarkers([...markers, { title, coordinates: coordinates }]) : setMarkers([{ title, coordinates: coordinates }])
     }
 
-    const showDirectionsHendler = async (e) => {
+    const showDirectionsHendler = async (e, start, end) => {
         e.preventDefault();
 
-        let fetchCoordinates = markers.map(location => location.coordinates)
+        let startLngLat = start.split(',');
+        let endLngLat = end.split(',');
 
-        let data = await fetchDirections(fetchCoordinates[0][0], fetchCoordinates[0][1], fetchCoordinates[1][0], fetchCoordinates[1][1]);
+        let data = await fetchDirections(startLngLat[0], startLngLat[1], endLngLat[0], endLngLat[1]);
+
         const geojson = {
             type: 'Feature',
             properties: {},
@@ -84,7 +86,7 @@ const App = () => {
             }
         }
         setGeojson(geojson);
-        console.log(data);
+    
     }
 
     return (
@@ -99,6 +101,7 @@ const App = () => {
                     setCenterView={setCenterView}
                     pickedLocation={pickedLocation}
                     currentLocation={currentLocation}
+                    showDirectionsHendler={showDirectionsHendler}
                 />
                 
                 <Map

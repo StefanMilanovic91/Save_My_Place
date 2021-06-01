@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment, useRef } from 'react';
 
-import MapGL, { NavigationControl, Marker } from "react-map-gl";
+import MapGL, { NavigationControl, Marker, Source, Layer } from "react-map-gl";
 
 
 const Map = ({ markers, centerView, currentLocation, geojson, setPickedLocation, setCenterView }) => {
@@ -166,6 +166,24 @@ const Map = ({ markers, centerView, currentLocation, geojson, setPickedLocation,
               <p className="marker-curr-pointer"></p>
             </div>
           </Marker>
+        }
+
+        {/* start & end position directions */
+          geojson && <Source id='polylineLayer' type='geojson' data={geojson} >
+            <Layer
+                id='lineLayer'
+                type='line'
+                source='my-data'
+                layout={{
+                'line-join': 'round',
+                'line-cap': 'round',
+                }}
+                paint={{
+                'line-color': 'rgba(3, 170, 238, 0.5)',
+                  'line-width': 5,
+                }}
+              />
+          </Source>
         }
 
       </MapGL>

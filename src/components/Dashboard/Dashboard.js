@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
-const Dashboard = ({ markers, saveLocationHendler, setCenterView, pickedLocation, currentLocation }) => {
+const Dashboard = ({ markers, saveLocationHendler, setCenterView, pickedLocation, currentLocation, showDirectionsHendler }) => {
 
     const [pickedInput, setPickedInput] = useState('');
     const [currentInput, setCurrentInput] = useState('');
     const [disabledPickedBtn, setDisabledPickedBtn] = useState(true);
     const [disabledCurrBtn, setDisabledCurrBtn] = useState(true);
-    const [disabledGetDirBtn, setDisabledGetDirBtn] = useState(false);
+    const [disabledGetDirectionsBtn, setDisabledGetDirBtn] = useState(false);
     const [startEndDirections, setStartEndDirections] = useState({ start: 'Select start', end: 'Select end' });
     
     useEffect(() => {
@@ -18,8 +18,9 @@ const Dashboard = ({ markers, saveLocationHendler, setCenterView, pickedLocation
     }, [currentLocation, currentInput]);
 
     useEffect(() => {
+        console.log(startEndDirections);
         if (startEndDirections.start === startEndDirections.end) {
-            console.log('isto');
+            console.log('if it is the same');
         }
     }, [startEndDirections]);
 
@@ -75,20 +76,20 @@ const Dashboard = ({ markers, saveLocationHendler, setCenterView, pickedLocation
                     <div className="Dashboard-directions-start">
                         <p>Start position</p>
                         <select onChange={(e) => setStartEndDirections({...startEndDirections, [e.target.name]: e.target.value })} name="start" >
-                            <option disabled selected>{startEndDirections.start}</option>
-                            { markers && markers.map(position =>  <option value={position.title}>{position.title}</option>) }
+                            <option disabled selected>Start position</option>
+                            { markers && markers.map(position =>  <option value={position.coordinates}>{position.title}</option>) }
                         </select>
                     </div>
                     <div className="Dashboard-directions-end">
                         <p>End position</p>
                         <select onChange={(e) => setStartEndDirections({...startEndDirections, [e.target.name]: e.target.value })} name="end" >
-                            <option disabled selected>{startEndDirections.end}</option>
-                            { markers && markers.map(position =>  <option value={position.title}>{position.title}</option>) }
+                            <option disabled selected>End position</option>
+                            { markers && markers.map(position =>  <option value={position.coordinates}>{position.title}</option>) }
                         </select>
                     </div>
                     
                     
-                    <button disabled={disabledGetDirBtn} onClick={(e) => { /* move from here, get directions for start & end postion */ } } className="btn btn-dash-input" >Get Directions</button>
+                    <button disabled={disabledGetDirectionsBtn} onClick={(e) => showDirectionsHendler(e, startEndDirections.start, startEndDirections.end) } className="btn btn-dash-input" >Get Directions</button>
                 </div>
             </div>
             
