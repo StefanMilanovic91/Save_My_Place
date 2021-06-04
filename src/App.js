@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import { uuid } from 'uuidv4';
 
 
 import Map from './components/Map/Map';
@@ -37,7 +38,7 @@ const App = () => {
         } else {
             setModalMessage("Geolocation is not supported by this browser.");
         }
-
+        
     }, []);
 
     const fetchDirections = (lng1, lat1, lng2, lat2) => {
@@ -65,17 +66,15 @@ const App = () => {
 
     const saveLocationHendler = (e, title, coordinates) => {
         e.preventDefault();
-        saveToLocalStorage({ title, coordinates: coordinates });
-        markers ? setMarkers([...markers, { title, coordinates: coordinates }]) : setMarkers([{ title, coordinates: coordinates }])
+        let id = uuid();
+        saveToLocalStorage({ title, coordinates, id });
+        markers ? setMarkers([...markers, { title, coordinates, id }]) : setMarkers([{ title, coordinates: coordinates }])
     }
 
     const showDirectionsHendler = async (e, start, end) => {
         e.preventDefault();
 
-        let startLngLat = start.split(',');
-        let endLngLat = end.split(',');
-
-        let data = await fetchDirections(startLngLat[0], startLngLat[1], endLngLat[0], endLngLat[1]);
+        let data = await fetchDirections(start[0], start[1], end[0], end[1]);
 
         const geojson = {
             type: 'Feature',
