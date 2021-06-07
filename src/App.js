@@ -4,9 +4,9 @@ import { uuid } from 'uuidv4';
 
 import Map from './components/Map/Map';
 import Modal from './components/Modal/Modal';
-import Navbar from './components/Navbar/Navbar';
 import Layout from './components/Layout/Layout';
 import Dashboard from './components/Dashboard/Dashboard';
+import Navbar from './components/Navbar/Navbar';
 
 const App = () => {
 
@@ -22,7 +22,8 @@ const App = () => {
     useEffect(() => {
 
         // get my locations from local storage
-        setMarkers(JSON.parse(localStorage.getItem('locations')));
+        let locations = JSON.parse(localStorage.getItem('locations'));
+        locations.length < 1 ? setMarkers(null) : setMarkers(JSON.parse(localStorage.getItem('locations')))
 
         //localStorage.setItem('locations', JSON.stringify([{ title: 'My parking place', coordinates: [21.25238312821648, 43.98523823866839] }]));
         if (navigator.geolocation) {
@@ -88,9 +89,23 @@ const App = () => {
     
     }
 
+    const removeSavedLocation = (id) => {
+
+        // remove location from local storage
+        let newLocations = getLocationsFromLS().filter(location => {
+            if(location.id !== id) return location;
+        });
+        localStorage.setItem('locations', JSON.stringify(newLocations));
+        
+        // remove location from markers
+        newLocations.length < 1 ? setMarkers(null) : setMarkers(newLocations);
+
+    }
+
     return (
         <main className="main-page">
-            <Navbar showDirectionsHendler={showDirectionsHendler} />
+
+            <Navbar />
 
             <Layout>
 
@@ -101,6 +116,7 @@ const App = () => {
                     pickedLocation={pickedLocation}
                     currentLocation={currentLocation}
                     showDirectionsHendler={showDirectionsHendler}
+                    removeSavedLocation={removeSavedLocation}
                 />
                 
                 <Map

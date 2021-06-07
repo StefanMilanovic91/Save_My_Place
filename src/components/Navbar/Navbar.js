@@ -1,18 +1,25 @@
 import React, { useState } from 'react'
 
-const Navbar = ({ showDirectionsHendler}) => {
+const Navbar = () => {
 
-
-    const [inputLocation, setInputLocation] = useState('');
 
     return (
         <nav className="nav">
-            <a className="navbar-logo" href="#">Logo</a>
-
-            <div className="nav-link">
-                <button onClick={showDirectionsHendler} className="btn btn-success">Get Directions</button>
+            <div className="nav-btn"></div>
+            <div className="nav-dropdown">
+                <div className="nav-link">
+                    <button className="btn btn-success">Saved Directions</button>
+                </div>
+                <div className="nav-link">
+                    <button className="btn btn-success">Saved Directions</button>
+                </div>
+                <div className="nav-link">
+                    <button className="btn btn-success">Saved Directions</button>
+                </div>
+                <div className="nav-link">
+                    <button className="btn btn-success">Saved Directions</button>
+                </div>
             </div>
-            
         </nav>
     )
 }

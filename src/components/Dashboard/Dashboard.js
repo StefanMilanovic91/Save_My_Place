@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { uuid } from 'uuidv4';
 
-const Dashboard = ({ markers, saveLocationHendler, setCenterView, pickedLocation, currentLocation, showDirectionsHendler }) => {
+const Dashboard = ({ markers, saveLocationHendler, setCenterView, pickedLocation, currentLocation, showDirectionsHendler, removeSavedLocation }) => {
 
     const [pickedInput, setPickedInput] = useState('');
     const [currentInput, setCurrentInput] = useState('');
@@ -73,12 +74,15 @@ const Dashboard = ({ markers, saveLocationHendler, setCenterView, pickedLocation
 
     return (
         <div className="Dashboard">
-            {/* Save locations panel */}
-            <div className="Dashboard-card Dashboard-locations">
+            {/* Saved locations panel */}
+            <div className="Dashboard-card">
                 <h3 className="Dashboard-locations-title" >Saved location</h3>
                 {   
                     markers ? markers.map((marker, index) => {
-                        return <li onClick={() => setCenterView(marker.coordinates)} className="Dashboard-location-item" key={index} >{marker.title}</li>
+                        return <li className="Dashboard-location-item" key={uuid()} >
+                                    <img onClick={() => removeSavedLocation(marker.id)} className="Dashboard-location-item-x" src='images/x.png' alt="delete" />
+                                    <p onClick={() => setCenterView(marker.coordinates)} className="Dashboard-item-title">{marker.title}</p>
+                                </li>
                     }) : <p>You have no saved locations.</p>
                 }
             </div>
