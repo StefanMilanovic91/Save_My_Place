@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { uuid } from 'uuidv4';
 
-const Dashboard = ({ markers, saveLocationHendler, setCenterView, pickedLocation, currentLocation, showDirectionsHendler, removeSavedLocation }) => {
+const Dashboard = ({ markers, saveLocationHandler, setCenterView, pickedLocation, currentLocation, showDirectionsHandler, removeSavedLocation }) => {
 
     const [pickedInput, setPickedInput] = useState('');
     const [currentInput, setCurrentInput] = useState('');
@@ -101,7 +101,7 @@ const Dashboard = ({ markers, saveLocationHendler, setCenterView, pickedLocation
                         <input className="Dashboard-input-item" name="picked-loc-name" onChange={(e) => setPickedInput(e.target.value)} type="text" value={pickedInput} placeholder="Add name here." />
                     </div>
                     
-                    <button disabled={disabledPickedBtn} onClick={(e) => { saveLocationHendler(e, pickedInput, pickedLocation); setPickedInput(''); }} className={disabledPickedBtn ?  "btn btn-dash-input btn-disabled" : "btn btn-dash-input" } >Save Picked Location</button>
+                    <button disabled={disabledPickedBtn} onClick={(e) => { saveLocationHandler(e, pickedInput, pickedLocation); setPickedInput(''); }} className={disabledPickedBtn ?  "btn btn-dash-input btn-disabled" : "btn btn-dash-input" } >Save Picked Location</button>
                 </div>
             </div>
 
@@ -119,7 +119,7 @@ const Dashboard = ({ markers, saveLocationHendler, setCenterView, pickedLocation
                         <input className="Dashboard-input-item" name="current-loc-name" onChange={(e) => setCurrentInput(e.target.value)} type="text" value={currentInput} placeholder="Add name here." />
                     </div>
                     
-                    <button disabled={disabledCurrBtn} onClick={(e) => { saveLocationHendler(e, currentInput, currentLocation); setCurrentInput(''); }} className={disabledCurrBtn ?  "btn btn-dash-input btn-disabled" : "btn btn-dash-input" } >Save Current Location</button>
+                    <button disabled={disabledCurrBtn} onClick={(e) => { saveLocationHandler(e, currentInput, currentLocation); setCurrentInput(''); }} className={disabledCurrBtn ?  "btn btn-dash-input btn-disabled" : "btn btn-dash-input" } >Save Current Location</button>
                 </div>
             </div>
 
@@ -143,7 +143,7 @@ const Dashboard = ({ markers, saveLocationHendler, setCenterView, pickedLocation
                     </div>
                     
                     
-                    <button disabled={disabledGetDirectionsBtn} onClick={(e) => showDirectionsHendler(e, JSON.parse(startDirections).coordinates, JSON.parse(endDirections).coordinates) } className={disabledGetDirectionsBtn ? "btn btn-dash-input btn-disabled" : "btn btn-dash-input"} >Get Directions</button>
+                    <button disabled={disabledGetDirectionsBtn} onClick={(e) => showDirectionsHandler(e, JSON.parse(startDirections).coordinates, JSON.parse(endDirections).coordinates) } className={disabledGetDirectionsBtn ? "btn btn-dash-input btn-disabled" : "btn btn-dash-input"} >Get Directions</button>
                 </div>
             </div>
             

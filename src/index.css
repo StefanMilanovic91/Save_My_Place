@@ -141,6 +141,7 @@ img {
 .nav-dropdown{
     position: absolute;
     width: 90%;
+    max-width: 315px;
     top: 60px;
     left: 50%;
     transform: translateX(-50%);
@@ -152,6 +153,52 @@ img {
 .nav-link{
     margin: 20px 0;
 }
+.nav-check-label{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.nav-check-input{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.nav-checkmark{
+    position: relative;
+    display: inline-block;
+    height: 25px;
+    width: 50px;
+    border-radius: 15px;
+    background-color: #eee;
+    vertical-align: middle;
+    box-shadow: inset 0 0 2px #000;
+    overflow: hidden;
+}
+.nav-checkmark-btn{
+    position: absolute;
+    top: 0;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+.nav-checkmark-btn-off{
+    right: 0;
+    background-color: red;
+}
+.nav-checkmark-btn-on{
+    left: 0;
+    background-color: green;
+}
+
 .btn{
     background: rgba( 255, 255, 255, 0.15 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );

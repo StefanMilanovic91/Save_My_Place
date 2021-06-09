@@ -65,14 +65,14 @@ const App = () => {
         return JSON.parse(localStorage.getItem('locations'));
     }
 
-    const saveLocationHendler = (e, title, coordinates) => {
+    const saveLocationHandler = (e, title, coordinates) => {
         e.preventDefault();
         let id = uuid();
         saveToLocalStorage({ title, coordinates, id });
         markers ? setMarkers([...markers, { title, coordinates, id }]) : setMarkers([{ title, coordinates: coordinates }])
     }
 
-    const showDirectionsHendler = async (e, start, end) => {
+    const showDirectionsHandler = async (e, start, end) => {
         e.preventDefault();
 
         let data = await fetchDirections(start[0], start[1], end[0], end[1]);
@@ -111,11 +111,11 @@ const App = () => {
 
                 <Dashboard
                     markers={markers}
-                    saveLocationHendler={saveLocationHendler}
+                    saveLocationHandler={saveLocationHandler}
                     setCenterView={setCenterView}
                     pickedLocation={pickedLocation}
                     currentLocation={currentLocation}
-                    showDirectionsHendler={showDirectionsHendler}
+                    showDirectionsHandler={showDirectionsHandler}
                     removeSavedLocation={removeSavedLocation}
                 />
                 
