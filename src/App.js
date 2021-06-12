@@ -6,7 +6,7 @@ import Map from './components/Map/Map';
 import Modal from './components/Modal/Modal';
 import Layout from './components/Layout/Layout';
 import Dashboard from './components/Dashboard/Dashboard';
-import Navbar from './components/Navbar/Navbar';
+
 
 const App = () => {
 
@@ -17,7 +17,7 @@ const App = () => {
     const [centerView, setCenterView] = useState([0, 0]);
     const [geojson, setGeojson] = useState(null);
     const [pickedLocation, setPickedLocation] = useState(null);
-
+    
 
     useEffect(() => {
 
@@ -102,10 +102,9 @@ const App = () => {
 
     }
 
+
     return (
         <main className="main-page">
-
-            <Navbar />
 
             <Layout>
 
