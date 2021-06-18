@@ -17,6 +17,7 @@ const App = () => {
     const [centerView, setCenterView] = useState([0, 0]);
     const [geojson, setGeojson] = useState(null);
     const [pickedLocation, setPickedLocation] = useState(null);
+    const [ddMenu, setDDMenu] = useState(false);
     
 
     useEffect(() => {
@@ -102,11 +103,19 @@ const App = () => {
 
     }
 
+    const ddMenuParentHandler = (e) => {
+        let tempVar = false;
+        let classCheck = // check if contains classes from menu
+        console.log(e.target.classList.contains('nav-dropdown'));
+        console.log(e.target.classList.contains('nav-dropdown-show'));
+        console.log(e.target.classList.contains("nav-check-input"));
+        //setDDMenu(!ddMenu);
+    }
 
     return (
-        <main className="main-page">
+        <main onClick={ddMenuParentHandler} className="main-page">
 
-            <Layout>
+            <Layout  >
 
                 <Dashboard
                     markers={markers}
@@ -116,6 +125,7 @@ const App = () => {
                     currentLocation={currentLocation}
                     showDirectionsHandler={showDirectionsHandler}
                     removeSavedLocation={removeSavedLocation}
+                    dropDownParentClick={ddMenu}
                 />
                 
                 <Map

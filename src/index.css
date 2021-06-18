@@ -149,6 +149,7 @@ img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 .nav-btn-line{
     width: 34px;
@@ -160,15 +161,20 @@ img {
 }
 .nav-dropdown{
     position: absolute;
-    width: 90%;
-    max-width: 315px;
+    height: 0;
+    width: 282px;
     top: 60px;
-    right: 0;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-    padding: 20px 10px;
+    right: -1px;
     z-index: 100;
     backdrop-filter: brightness(0.7) blur(37px);
     border-radius: 4px;
+    overflow: hidden;
+    padding-left: 20px;
+    padding-right: 20px;
+    transition: height .3s;
+}
+.nav-dropdown-show{
+    height: 221px;
 }
 .nav-link{
     margin: 20px 0;
@@ -186,6 +192,9 @@ img {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+.nav-check-label:first-child{
+    margin-top: 19px;
 }
 .nav-check-label-on{
     color: cyan;

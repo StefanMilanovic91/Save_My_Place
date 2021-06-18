@@ -3,7 +3,7 @@ import { uuid } from 'uuidv4';
 
 import Navbar from '../Navbar/Navbar';
 
-const Dashboard = ({ markers, saveLocationHandler, setCenterView, pickedLocation, currentLocation, showDirectionsHandler, removeSavedLocation }) => {
+const Dashboard = ({ markers, saveLocationHandler, setCenterView, pickedLocation, currentLocation, showDirectionsHandler, removeSavedLocation, dropDownParentClick }) => {
 
     const [pickedInput, setPickedInput] = useState('');
     const [currentInput, setCurrentInput] = useState('');
@@ -166,7 +166,7 @@ const Dashboard = ({ markers, saveLocationHandler, setCenterView, pickedLocation
     return (
         <div className="Dashboard">
             
-            <Navbar showDashboardHandler={showDashboardHandler} />
+            <Navbar showDashboardHandler={showDashboardHandler} dropDownParentClick={dropDownParentClick} />
 
             <div className="row">
                 {/* Saved locations panel */}
