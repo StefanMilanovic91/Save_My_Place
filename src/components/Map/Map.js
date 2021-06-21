@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment, useRef } from 'react';
 
-import MapGL, { NavigationControl, Marker, Source, Layer } from "react-map-gl";
+import MapGL, { Marker, Source, Layer } from "react-map-gl";
 
 
 const Map = ({ markers, centerView, currentLocation, geojson, setPickedLocation, setCenterView }) => {
@@ -42,75 +42,6 @@ const Map = ({ markers, centerView, currentLocation, geojson, setPickedLocation,
     cursor: 'pointer',
     transform: `translate(${-7}px,${-14}px)`,
     stroke: 'none'
-  }
-
-
-  /* useEffect(() => {
-       
-       console.log(map.loaded());
-         init(map);
-
-         map.on('load', () => {
-           makeRouteHendler(map);
-         })
-     
-         return () => map.remove();
-     }, [centerView, geojson]);
-   */
-
-
-  /*const init = (map) => {
-      
-      
-      const nav = new mapboxgl.NavigationControl();
-      const geolocate = new mapboxgl.GeolocateControl({
-          positionOptions: {
-            enableHighAccuracy: true
-          },
-          trackUserLocation: true
-        });
-      /*const directions = new Directions({
-          accessToken: mapboxgl.accessToken,
-          unit: 'metric',
-          profile: 'mapbox/cycling'
-      })
-
-      markers.forEach(marker => {
-          
-          new mapboxgl.Popup({
-              closeButton: false,
-              closeOnClick: false,
-              anchor: 'right'
-          }).setLngLat(marker.coordinates).setHTML(`<p>${marker.title}</p>`).addTo(map);
-          new mapboxgl.Marker().setLngLat(marker.coordinates).setPopup().addTo(map);
-      }) 
-
-      //map.addControl(directions, "top-left")
-      map.addControl(geolocate, "top-right")
-      map.addControl(nav, "top-right"); 
-
-      
-  }*/
-
-
-  const makeRouteHendler = (map) => {
-    map.addLayer({
-      id: 'route',
-      type: 'line',
-      source: {
-        type: 'geojson',
-        data: geojson
-      },
-      layout: {
-        'line-join': 'round',
-        'line-cap': 'round'
-      },
-      paint: {
-        'line-color': '#3887be',
-        'line-width': 5,
-        'line-opacity': 0.75
-      }
-    });
   }
 
 

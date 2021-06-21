@@ -1,5 +1,4 @@
 import React, { useEffect, useState, Fragment } from 'react';
-import { uuid } from 'uuidv4';
 
 import Navbar from '../Navbar/Navbar';
 
@@ -90,8 +89,8 @@ const Dashboard = ({ markers, saveLocationHandler, setCenterView, pickedLocation
                             <div className="Dashboard-card">
                                 <h3 className="Dashboard-locations-title" >Saved location</h3>
                                 {
-                                    markers ? markers.map((marker, index) => {
-                                        return <li className="Dashboard-location-item" key={uuid()} >
+                                    markers ? markers.map(marker => {
+                                        return <li className="Dashboard-location-item" key={marker.id} >
                                             <img onClick={() => removeSavedLocation(marker.id)} className="Dashboard-location-item-x" src='images/x.png' alt="delete" />
                                             <p onClick={() => setCenterView(marker.coordinates)} className="Dashboard-item-title">{marker.title}</p>
                                         </li>
@@ -100,7 +99,7 @@ const Dashboard = ({ markers, saveLocationHandler, setCenterView, pickedLocation
                             </div>
                         </Fragment>
 
-    let pickeLocationsCard = showDashboardCard.picked_location && <Fragment>
+    let pickedLocationsCard = showDashboardCard.picked_location && <Fragment>
                             <div className="Dashboard-card Dashboard-input">
                                 <div className="Dashboard-input-group">
                                     <h3 className="Dashboard-locations-title" >Picked location</h3>
@@ -173,7 +172,7 @@ const Dashboard = ({ markers, saveLocationHandler, setCenterView, pickedLocation
                 { savedLocationsCard }
 
                 {/* Picked location panel */}
-                { pickeLocationsCard }
+                { pickedLocationsCard }
 
                 {/* Current location panel */}
                 { currentLocationsCard }

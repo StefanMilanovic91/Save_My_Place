@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { uuid } from 'uuidv4';
+import { v4 as uuid_v4 } from "uuid";
 
 
 import Map from './components/Map/Map';
@@ -68,9 +68,10 @@ const App = () => {
 
     const saveLocationHandler = (e, title, coordinates) => {
         e.preventDefault();
-        let id = uuid();
+        let id = uuid_v4();
+        console.log(id);
         saveToLocalStorage({ title, coordinates, id });
-        markers ? setMarkers([...markers, { title, coordinates, id }]) : setMarkers([{ title, coordinates: coordinates }])
+        markers ? setMarkers([...markers, { title, coordinates, id }]) : setMarkers([{ title, coordinates, id }])
     }
 
     const showDirectionsHandler = async (e, start, end) => {
@@ -91,7 +92,7 @@ const App = () => {
     }
 
     const removeSavedLocation = (id) => {
-
+        console.log(id);
         // remove location from local storage
         let newLocations = getLocationsFromLS().filter(location => {
             if(location.id !== id) return location;
@@ -104,18 +105,23 @@ const App = () => {
     }
 
     const ddMenuParentHandler = (e) => {
-        let tempVar = false;
-        let classCheck = // check if contains classes from menu
-        console.log(e.target.classList.contains('nav-dropdown'));
-        console.log(e.target.classList.contains('nav-dropdown-show'));
-        console.log(e.target.classList.contains("nav-check-input"));
-        //setDDMenu(!ddMenu);
+        let classList = e.target.classList;
+        let class1 = classList.contains('nav-dropdown');
+        let class3 = classList.contains("nav-check-input");
+        let class4 = classList.contains("nav-checkmark");
+        let class5 = classList.contains("nav-checkmark-btn");
+        let class6 = classList.contains("nav-check-label");
+        if (!class1 && !class3 && !class4 && !class5 && !class6) {
+            setDDMenu(!ddMenu);
+        }
+        
+        
     }
 
     return (
-        <main onClick={ddMenuParentHandler} className="main-page">
+        <main  className="main-page">
 
-            <Layout  >
+            <Layout onClick={ddMenuParentHandler} >
 
                 <Dashboard
                     markers={markers}
