@@ -3,7 +3,7 @@ import React, { useEffect, useState, Fragment, useRef } from 'react';
 import MapGL, { Marker, Source, Layer } from "react-map-gl";
 
 
-const Map = ({ markers, centerView, currentLocation, geojson, setPickedLocation, setCenterView }) => {
+const Map = ({ markers, centerView, currentLocation, geojson, setPickedLocation }) => {
 
   const map = useRef();
 

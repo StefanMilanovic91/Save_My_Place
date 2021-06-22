@@ -7,6 +7,8 @@ import Modal from './components/Modal/Modal';
 import Layout from './components/Layout/Layout';
 import Dashboard from './components/Dashboard/Dashboard';
 
+import AppService from './services/app-service';
+
 
 const App = () => {
 
@@ -23,8 +25,8 @@ const App = () => {
     useEffect(() => {
 
         // get my locations from local storage
-        let locations = JSON.parse(localStorage.getItem('locations'));
-        locations.length < 1 ? setMarkers(null) : setMarkers(JSON.parse(localStorage.getItem('locations')))
+        let locations = AppService.getLocationsFromLS();
+        locations ? locations.length < 1 ? setMarkers(null) : setMarkers(locations) : setMarkers(null)
 
         //localStorage.setItem('locations', JSON.stringify([{ title: 'My parking place', coordinates: [21.25238312821648, 43.98523823866839] }]));
         if (navigator.geolocation) {
@@ -43,41 +45,18 @@ const App = () => {
         
     }, []);
 
-    const fetchDirections = (lng1, lat1, lng2, lat2) => {
-        let data = fetch(`https://api.mapbox.com/directions/v5/mapbox/driving/${lng1},${lat1};${lng2},${lat2}?&geometries=geojson&steps=true&access_token=${process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}`).then(res => res).then(data => data.json());
-        return data;
-    }
-
-
-    const saveToLocalStorage = (arg) => {
-        let oldpLoc = JSON.parse(localStorage.getItem('locations'));
-        if (oldpLoc) {
-            let newLoc = JSON.stringify([...oldpLoc, arg]);
-            localStorage.setItem('locations', newLoc);
-        } else {
-            let newLoc = JSON.stringify([arg]);
-            localStorage.setItem('locations', newLoc);
-        }
-
-
-    }
-
-    const getLocationsFromLS = () => {
-        return JSON.parse(localStorage.getItem('locations'));
-    }
 
     const saveLocationHandler = (e, title, coordinates) => {
         e.preventDefault();
         let id = uuid_v4();
-        console.log(id);
-        saveToLocalStorage({ title, coordinates, id });
+        AppService.saveLocationToLS({ title, coordinates, id });
         markers ? setMarkers([...markers, { title, coordinates, id }]) : setMarkers([{ title, coordinates, id }])
     }
 
     const showDirectionsHandler = async (e, start, end) => {
         e.preventDefault();
 
-        let data = await fetchDirections(start[0], start[1], end[0], end[1]);
+        let data = await AppService.getDirections(start[0], start[1], end[0], end[1]) //fetchDirections(start[0], start[1], end[0], end[1]);
 
         const geojson = {
             type: 'Feature',
@@ -92,10 +71,10 @@ const App = () => {
     }
 
     const removeSavedLocation = (id) => {
-        console.log(id);
-        // remove location from local storage
-        let newLocations = getLocationsFromLS().filter(location => {
-            if(location.id !== id) return location;
+
+        // remove location from local storage array
+        let newLocations = AppService.getLocationsFromLS().filter(location => {
+            return location.id !== id;
         });
         localStorage.setItem('locations', JSON.stringify(newLocations));
         

@@ -34,8 +34,8 @@ const Dashboard = ({ markers, saveLocationHandler, setCenterView, pickedLocation
     useEffect(() => {
 
         // init options for get directions
-        markers && setOptions1(markers.map(position => <option value={JSON.stringify(position)}>{position.title}</option>));
-        markers && setOptions2(markers.map(position => <option value={JSON.stringify(position)}>{position.title}</option>));
+        markers && setOptions1(markers.map(position => <option key={position.id} value={JSON.stringify(position)}>{position.title}</option>));
+        markers && setOptions2(markers.map(position => <option key={position.id} value={JSON.stringify(position)}>{position.title}</option>));
 
     }, [markers]);
 
@@ -44,9 +44,9 @@ const Dashboard = ({ markers, saveLocationHandler, setCenterView, pickedLocation
         if (startDirections || endDirections) {
             markers && setOptions2(markers.map(position => {
                 if (JSON.parse(startDirections).id === position.id) {
-                    return <option disabled value={JSON.stringify(position)}>{position.title}</option>
+                    return <option key={position.id} disabled value={JSON.stringify(position)}>{position.title}</option>
                 } else {
-                    return <option value={JSON.stringify(position)}>{position.title}</option>
+                    return <option key={position.id} value={JSON.stringify(position)}>{position.title}</option>
                 }
 
             }));
@@ -64,9 +64,9 @@ const Dashboard = ({ markers, saveLocationHandler, setCenterView, pickedLocation
         if (startDirections || endDirections) {
             markers && setOptions1(markers.map(position => {
                 if (JSON.parse(endDirections).id === position.id) {
-                    return <option disabled value={JSON.stringify(position)}>{position.title}</option>
+                    return <option key={position.id} disabled value={JSON.stringify(position)}>{position.title}</option>
                 } else {
-                    return <option value={JSON.stringify(position)}>{position.title}</option>
+                    return <option key={position.id} value={JSON.stringify(position)}>{position.title}</option>
                 }
 
             }));
