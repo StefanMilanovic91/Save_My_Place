@@ -1,6 +1,8 @@
 import React, { useEffect, useState, Fragment, useRef } from 'react';
 
 import MapGL, { Marker, Source, Layer } from "react-map-gl";
+import 'mapbox-gl/dist/mapbox-gl.css';
+import '../../css/map.css';
 
 
 const Map = ({ markers, centerView, currentLocation, geojson, setPickedLocation }) => {
@@ -22,15 +24,15 @@ const Map = ({ markers, centerView, currentLocation, geojson, setPickedLocation 
       latitude: centerView[1],
       longitude: centerView[0],
     });
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [centerView]);
 
-    const markerIconPath = `M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,4.5,2,10c0,2,0.6,3.9,1.6,5.4c0,0.1,0.1,0.2,0.2,0.3
+  const markerIconPath = `M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,4.5,2,10c0,2,0.6,3.9,1.6,5.4c0,0.1,0.1,0.2,0.2,0.3
     c0,0,0.1,0.1,0.1,0.2c0.2,0.3,0.4,0.6,0.7,0.9c2.6,3.1,7.4,7.6,7.4,7.6s4.8-4.5,7.4-7.5c0.2-0.3,0.5-0.6,0.7-0.9
     C20.1,15.8,20.2,15.8,20.2,15.7z`;
 
 
-    const circle = <Fragment><rect id="svgEditorBackground" x="0" y="0" width="14" height="14" style={{fill: 'none', stroke: "none"}}/><circle id="e1_circle" cx="7" cy="7" style={{fill:'#5a92f2', stroke: 'none' }} r="7"/></Fragment>
+  const circle = <Fragment><rect id="svgEditorBackground" x="0" y="0" width="14" height="14" style={{ fill: 'none', stroke: "none" }} /><circle id="e1_circle" cx="7" cy="7" style={{ fill: '#5a92f2', stroke: 'none' }} r="7" /></Fragment>
 
   const pinStyle = {
     cursor: 'pointer',
@@ -61,7 +63,7 @@ const Map = ({ markers, centerView, currentLocation, geojson, setPickedLocation 
         height='100%'
         ref={map}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-        onViewportChange={nextViewport => setViewport(nextViewport) }
+        onViewportChange={nextViewport => setViewport(nextViewport)}
         onClick={pickedLocation}
 
       >
@@ -77,7 +79,7 @@ const Map = ({ markers, centerView, currentLocation, geojson, setPickedLocation 
                   style={{ ...pinStyle, fill: 'forestgreen' }} >
                   <path d={markerIconPath} />
                 </svg>
-                <p className="marker-title marker-title-place" >{marker.title}</p>
+                <p className="marker__title marker__title__place" >{marker.title}</p>
               </div>
             </Marker>
           })
@@ -86,14 +88,14 @@ const Map = ({ markers, centerView, currentLocation, geojson, setPickedLocation 
         {/* your postion */
           currentLocation && <Marker longitude={currentLocation[0]} latitude={currentLocation[1]} >
             <div className="marker">
-              <svg  width={14}
-                    height={14}
-                    viewBox="0 0 14 14"
-                    style={{ ...circleStyle }} >
+              <svg width={14}
+                height={14}
+                viewBox="0 0 14 14"
+                style={{ ...circleStyle }} >
                 {circle}
               </svg>
-              
-              <p className="marker-title marker-title-current" >Your position</p>
+
+              <p className="marker__title marker__title__current" >Your position</p>
               <p className="marker-curr-pointer"></p>
             </div>
           </Marker>
@@ -102,18 +104,18 @@ const Map = ({ markers, centerView, currentLocation, geojson, setPickedLocation 
         {/* start & end position directions */
           geojson && <Source id='polylineLayer' type='geojson' data={geojson} >
             <Layer
-                id='lineLayer'
-                type='line'
-                source='my-data'
-                layout={{
+              id='lineLayer'
+              type='line'
+              source='my-data'
+              layout={{
                 'line-join': 'round',
                 'line-cap': 'round',
-                }}
-                paint={{
+              }}
+              paint={{
                 'line-color': 'rgba(3, 170, 238, 0.5)',
-                  'line-width': 5,
-                }}
-              />
+                'line-width': 5,
+              }}
+            />
           </Source>
         }
 

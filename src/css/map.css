@@ -1,0 +1,60 @@
+.mapbox-react {
+  width: 100%;
+  height: 50vh;
+}
+
+.marker {
+  position: relative;
+}
+
+.marker__title {
+  background-color: burlywood;
+  padding: 0 5px;
+  -webkit-transform: translate(0, -33px);
+      -ms-transform: translate(0, -33px);
+          transform: translate(0, -33px);
+  border-radius: 3px;
+  height: 24px;
+}
+
+.marker__title__place {
+  position: absolute;
+  white-space: nowrap;
+  top: 7px;
+  left: 18px;
+}
+
+.marker__title__place:after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-color: burlywood;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+  position: absolute;
+  top: 4px;
+  left: -6px;
+  z-index: -1;
+}
+
+.marker__title__current {
+  -webkit-transform: translate(-113px, -38px);
+      -ms-transform: translate(-113px, -38px);
+          transform: translate(-113px, -38px);
+}
+
+.marker__title__current:after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-color: burlywood;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+  position: absolute;
+  top: 4px;
+  right: -6px;
+  z-index: -1;
+}
+/*# sourceMappingURL=map.css.map */

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../../css/navbar.css';
 
 
 const Navbar = ({ showDashboardHandler, dropDownParentClick }) => {
@@ -14,6 +15,7 @@ const Navbar = ({ showDashboardHandler, dropDownParentClick }) => {
 
     useEffect(() => {
         showDashboardHandler(showMenuCard);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [showMenuCard]);
 
     useEffect(() => {
@@ -28,6 +30,7 @@ const Navbar = ({ showDashboardHandler, dropDownParentClick }) => {
         if (dropdowMenu) {
             toggleddMenuHandler()
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dropDownParentClick])
 
     const toggleddMenuHandler = () => {
@@ -36,42 +39,42 @@ const Navbar = ({ showDashboardHandler, dropDownParentClick }) => {
     }
 
 
-    let dropdownMenuClasses = dropdowMenu ? "nav-dropdown nav-dropdown-show" : "nav-dropdown";
+    let dropdownMenuClasses = dropdowMenu ? "nav__dropdown nav__dropdown__show" : "nav__dropdown";
 
-    let savedLocatinClasses = showMenuCard.saved_location ? "nav-checkmark-btn nav-checkmark-btn-on" : "nav-checkmark-btn";
-    let pickedLocatinClasses = showMenuCard.picked_location ? "nav-checkmark-btn nav-checkmark-btn-on" : "nav-checkmark-btn";
-    let currentLocatinClasses = showMenuCard.current_location ? "nav-checkmark-btn nav-checkmark-btn-on" : "nav-checkmark-btn";
-    let getDirectionClasses = showMenuCard.get_directions ? "nav-checkmark-btn nav-checkmark-btn-on" : "nav-checkmark-btn";
+    let savedLocatinClasses = showMenuCard.saved_location ? "nav__checkmark__btn nav__checkmark__btn-on" : "nav__checkmark__btn";
+    let pickedLocatinClasses = showMenuCard.picked_location ? "nav__checkmark__btn nav__checkmark__btn-on" : "nav__checkmark__btn";
+    let currentLocatinClasses = showMenuCard.current_location ? "nav__checkmark__btn nav__checkmark__btn-on" : "nav__checkmark__btn";
+    let getDirectionClasses = showMenuCard.get_directions ? "nav__checkmark__btn nav__checkmark__btn-on" : "nav__checkmark__btn";
 
-    let labelSavedLocatinClasses = showMenuCard.saved_location ? "nav-check-label nav-check-label-on" : "nav-check-label";
-    let labelPickedLocatinClasses = showMenuCard.picked_location ? "nav-check-label nav-check-label-on" : "nav-check-label";
-    let labelCurrentLocatinClasses = showMenuCard.current_location ? "nav-check-label nav-check-label-on" : "nav-check-label";
-    let labelGetDirectionClasses = showMenuCard.get_directions ? "nav-check-label nav-check-label-on" : "nav-check-label";
+    let labelSavedLocatinClasses = showMenuCard.saved_location ? "nav__check-label nav__check-label-on" : "nav__check-label";
+    let labelPickedLocatinClasses = showMenuCard.picked_location ? "nav__check-label nav__check-label-on" : "nav__check-label";
+    let labelCurrentLocatinClasses = showMenuCard.current_location ? "nav__check-label nav__check-label-on" : "nav__check-label";
+    let labelGetDirectionClasses = showMenuCard.get_directions ? "nav__check-label nav__check-label-on" : "nav__check-label";
 
     return (
         <nav className="nav">
-            <div onClick={toggleddMenuHandler} className="nav-btn">
-                <div className="nav-btn-line"></div>
-                <div className="nav-btn-line"></div>
-                <div className="nav-btn-line"></div>
+            <div onClick={toggleddMenuHandler} className="nav__btn">
+                <div className="nav__btn__line"></div>
+                <div className="nav__btn__line"></div>
+                <div className="nav__btn__line"></div>
             </div>
             {
                 removeDropdownFromDOM && <div className={dropdownMenuClasses}>
                     <label className={labelSavedLocatinClasses}  htmlFor="saved_location">Saved Location
-                        <input className="nav-check-input" onClick={(e) => { setShowMenuCard({ ...showMenuCard, [e.target.name]: !showMenuCard.saved_location })}} type="checkbox" id="saved_location" name="saved_location" />
-                        <span className="nav-checkmark"><span className={savedLocatinClasses}></span></span>
+                        <input className="nav__check-input" onClick={(e) => { setShowMenuCard({ ...showMenuCard, [e.target.name]: !showMenuCard.saved_location })}} type="checkbox" id="saved_location" name="saved_location" />
+                        <span className="nav__checkmark"><span className={savedLocatinClasses}></span></span>
                     </label>
                     <label className={labelPickedLocatinClasses} htmlFor="picked_location">Picked Location
-                        <input className="nav-check-input" onClick={(e) => setShowMenuCard({ ...showMenuCard, [e.target.name]: !showMenuCard.picked_location })} type="checkbox" id="picked_location" name="picked_location"  />
-                        <span className="nav-checkmark"><span className={pickedLocatinClasses}></span></span>
+                        <input className="nav__check-input" onClick={(e) => setShowMenuCard({ ...showMenuCard, [e.target.name]: !showMenuCard.picked_location })} type="checkbox" id="picked_location" name="picked_location"  />
+                        <span className="nav__checkmark"><span className={pickedLocatinClasses}></span></span>
                     </label>
                     <label className={labelCurrentLocatinClasses} htmlFor="current_location">Current Location
-                        <input className="nav-check-input" onClick={(e) => setShowMenuCard({ ...showMenuCard, [e.target.name]: !showMenuCard.current_location })} type="checkbox" id="current_location" name="current_location"  />
-                        <span className="nav-checkmark"><span className={currentLocatinClasses}></span></span>
+                        <input className="nav__check-input" onClick={(e) => setShowMenuCard({ ...showMenuCard, [e.target.name]: !showMenuCard.current_location })} type="checkbox" id="current_location" name="current_location"  />
+                        <span className="nav__checkmark"><span className={currentLocatinClasses}></span></span>
                     </label>
                     <label className={labelGetDirectionClasses} htmlFor="get_directions">Get Directions
-                        <input className="nav-check-input" onClick={(e) => setShowMenuCard({ ...showMenuCard, [e.target.name]: !showMenuCard.get_directions })} type="checkbox" id="get_directions" name="get_directions"  />
-                        <span className="nav-checkmark"><span className={getDirectionClasses}></span></span>
+                        <input className="nav__check-input" onClick={(e) => setShowMenuCard({ ...showMenuCard, [e.target.name]: !showMenuCard.get_directions })} type="checkbox" id="get_directions" name="get_directions"  />
+                        <span className="nav__checkmark"><span className={getDirectionClasses}></span></span>
                     </label>
                 </div>
             } 

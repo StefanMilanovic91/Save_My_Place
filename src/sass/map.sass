@@ -1,0 +1,44 @@
+.mapbox-react
+    width: 100%
+    height: 50vh
+
+.marker
+    position: relative
+    &__title
+        background-color: burlywood
+        padding: 0 5px
+        transform: translate(0, -33px)
+        border-radius: 3px
+        height: 24px
+
+        &__place
+            position: absolute
+            white-space: nowrap
+            top: 7px
+            left: 18px
+            &:after
+                content: ""
+                width: 16px
+                height: 16px
+                background-color: burlywood
+                transform: rotate(45deg)
+                position: absolute
+                top: 4px
+                left: -6px
+                z-index: -1
+    
+
+        &__current
+            transform: translate(-113px, -38px)
+            &:after
+                content: ""
+                width: 16px
+                height: 16px
+                background-color: burlywood
+                transform: rotate(45deg)
+                position: absolute
+                top: 4px
+                right: -6px
+                z-index: -1
+    
+

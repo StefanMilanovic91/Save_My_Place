@@ -85,11 +85,11 @@ const App = () => {
 
     const ddMenuParentHandler = (e) => {
         let classList = e.target.classList;
-        let class1 = classList.contains('nav-dropdown');
-        let class3 = classList.contains("nav-check-input");
-        let class4 = classList.contains("nav-checkmark");
-        let class5 = classList.contains("nav-checkmark-btn");
-        let class6 = classList.contains("nav-check-label");
+        let class1 = classList.contains('nav__dropdown');
+        let class3 = classList.contains("nav__check-input");
+        let class4 = classList.contains("nav__checkmark");
+        let class5 = classList.contains("nav__checkmark__btn");
+        let class6 = classList.contains("nav__check-label");
         if (!class1 && !class3 && !class4 && !class5 && !class6) {
             setDDMenu(!ddMenu);
         }

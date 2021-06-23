@@ -1,0 +1,85 @@
+/* CSS Reset
+ * *********************************** */
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    line-height: 1.4;
+}
+
+a,
+a:visited {
+    color: inherit;
+}
+
+article,
+aside,
+footer,
+header,
+nav,
+section,
+main {
+    display: block;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+.row{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+/* Element specific
+ * *********************************** */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+img,
+video {
+    max-width: 100%;
+}
+
+img {
+    border-style: none;
+}
+
+/*************************** CSS RULES ************************************ */
+
+.Main{
+    display: flex;
+    width: 100%;
+    padding: 0 20px 50px;
+    flex-direction: column;
+}
+
+
+.main-page{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-image: linear-gradient(180deg,#2f6ed3 5%,#5095e4 20%,#5095e4 60%,#2f6ed3 95%);
+}
+
