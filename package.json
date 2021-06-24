@@ -30,7 +30,7 @@
       ">0.2%",
       "not dead",
       "not op_mini all",
-      "not ie 11", 
+      "not ie 11",
       "not chrome < 51",
       "not safari < 10"
     ],
@@ -41,6 +41,7 @@
     ]
   },
   "devDependencies": {
-    "dotenv": "^9.0.2"
+    "dotenv": "^9.0.2",
+    "worker-loader": "^3.0.8"
   }
 }

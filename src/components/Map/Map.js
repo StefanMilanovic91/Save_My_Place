@@ -1,9 +1,12 @@
 import React, { useEffect, useState, Fragment, useRef } from 'react';
 
 import MapGL, { Marker, Source, Layer } from "react-map-gl";
+import mapboxgl from "mapbox-gl";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import '../../css/map.css';
 
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
 
 const Map = ({ markers, centerView, currentLocation, geojson, setPickedLocation }) => {
 
