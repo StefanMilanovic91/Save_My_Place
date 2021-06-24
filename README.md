@@ -1,3 +1,10 @@
+# Save My Place
+Description: App for easier navigation in an unknown city. Remember your location (parking, shop, etc.) and returning to that location will never be easier.
+
+Tech: ["React", "Sass", "Mapbox"]
+
+Live Preview: https://save-my-place.vercel.app/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
